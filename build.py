@@ -1,5 +1,6 @@
 import os
 import glob
+import rjsmin
 
 directory = r"./append/**.js"
 directoryList = glob.glob(directory, recursive=True)
@@ -18,6 +19,16 @@ for fileName in directoryList:
     fileContents = file.read()
     file.close()
 
-    mainFile.write("\n" + fileContents)
+    mainFile.write("\n" + fileContents + "\n")
 
+mainFile.close()
+
+mainFile = open("main.js", "r")
+script = mainFile.read()
+mainFile.close()
+
+minified = rjsmin.jsmin(script, keep_bang_comments=True)
+
+mainFile = open("main.js", "w")
+mainFile.write(minified)
 mainFile.close()
