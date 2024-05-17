@@ -1,7 +1,7 @@
 import os
 import glob
 
-directory = r"./append/**"
+directory = r"./append/**.js"
 directoryList = glob.glob(directory, recursive=True)
 
 mainFile = open("main.js", "w")
@@ -18,6 +18,6 @@ for fileName in directoryList:
     fileContents = file.read()
     file.close()
 
-    mainFile.write("\n" + fileContents + "\n")
+    mainFile.write("\n" + fileContents)
 
 mainFile.close()
