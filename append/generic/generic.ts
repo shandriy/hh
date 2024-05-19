@@ -1,6 +1,6 @@
 "use strict";
 
-var HandlerGeneric = {
+var gen = {
   init: function() {
     try {
       document.getElementsByTagName("p")[0].remove();
@@ -9,7 +9,7 @@ var HandlerGeneric = {
       document.getElementsByTagName("p")[0].innerHTML = "";
     };
 
-    var aspectRatio = 5 / 3;
+    var aspectRatio = out.canvas.aspectRatio;
 
     var canvas = document.getElementsByTagName("canvas")[0];
     var context = canvas.getContext("2d", { alpha: false });
@@ -18,8 +18,8 @@ var HandlerGeneric = {
       var screenHeight = window.innerHeight;
       var screenAspectRatio = screenWidth / screenHeight;
 
-      var width = 500;
-      var height = 300;
+      var width = out.canvas.unitWidth;
+      var height = out.canvas.unitHeight;
 
       if (screenAspectRatio < aspectRatio) {
         width = screenWidth;
@@ -43,6 +43,9 @@ var HandlerGeneric = {
       canvas.style.height = height + "px";
       context!.fillStyle = "#fff";
       context!.fillRect(0, 0, width, height);
+
+      out.canvas.width = width;
+      out.canvas.height = height;
     }
     window.addEventListener("resize", onResize);
     window.addEventListener("focus", onResize);
