@@ -1,13 +1,22 @@
 "use strict";
 
-var main = {};
+var main = {
+  init: function() {
+
+  }
+};
 main.init = function() {
-  document.getElementsByTagName("p")[0].remove();
-  document.getElementsByTagName("noscript")[0].remove();
+  try {
+    document.getElementsByTagName("p")[0].remove();
+    document.getElementsByTagName("noscript")[0].remove();
+  } catch (error) {
+    document.getElementsByTagName("p")[0].innerHTML = "";
+  };
 
   var aspectRatio = 5 / 3;
 
   var canvas = document.getElementsByTagName("canvas")[0];
+  var context = canvas.getContext("2d", { alpha: false });
   window.addEventListener("resize", function() {
     var screenWidth = window.innerWidth;
     var screenHeight = window.innerHeight;
@@ -32,9 +41,11 @@ main.init = function() {
 
     width = Math.round(width);
     height = Math.round(height);
-    canvas.setAttribute("width", width);
-    canvas.setAttribute("height", height);
+    canvas.setAttribute("width", width.toString());
+    canvas.setAttribute("height", height.toString());
     canvas.style.width = width + "px";
     canvas.style.height = height + "px";
+    context!.fillStyle = "#fff";
+    context!.fillRect(0, 0, width, height);
   });
 };
