@@ -51,8 +51,8 @@ var gen = {
       gen.canvas.setAttribute("height", height.toString());
       gen.canvas.style.width = width + "px";
       gen.canvas.style.height = height + "px";
-      gen.context!.fillStyle = "#fff";
-      gen.context!.fillRect(0, 0, width, height);
+      gen.context.fillStyle = "#fff";
+      gen.context.fillRect(0, 0, width, height);
 
       out.canvas.width = width;
       out.canvas.height = height;
