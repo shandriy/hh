@@ -1,5 +1,5 @@
-find append/* -name *.ts > discard
-echo "{\"compilerOptions\":{\"outFile\":\"main.js\",\"declaration\":false},\"files\":[" > tsconfig.json
+find append/* -type f  > discard
+echo "{\"compilerOptions\":{\"outFile\":\"main.js\",\"declaration\":false,\"allowJs\":true},\"files\":[" > tsconfig.json
 
 while read line
 do
