@@ -1,6 +1,9 @@
 "use strict";
 
 var gen = {
+  canvas: document.createElement("canvas"),
+  context: document.createElement("canvas").getContext("2d"),
+
   deltaTime: 13,
   lastFrame: 0,
   frame: function() {
@@ -18,8 +21,8 @@ var gen = {
 
     var aspectRatio = out.canvas.aspectRatio;
 
-    var canvas = document.getElementsByTagName("canvas")[0];
-    var context = canvas.getContext("2d", { alpha: false });
+    gen.canvas = document.getElementsByTagName("canvas")[0];
+    gen.context = gen.canvas.getContext("2d", { alpha: false });
     function onResize() {
       var screenWidth = window.innerWidth;
       var screenHeight = window.innerHeight;
@@ -32,24 +35,24 @@ var gen = {
         width = screenWidth;
         height = screenWidth / aspectRatio;
 
-        canvas.style.left = "0px";
-        canvas.style.top = (screenHeight - height) / 2 + "px";
+        gen.canvas.style.left = "0px";
+        gen.canvas.style.top = (screenHeight - height) / 2 + "px";
       } else {
         height = screenHeight;
         width = screenHeight * aspectRatio;
 
-        canvas.style.top = "0px";
-        canvas.style.left = (screenWidth - width) / 2 + "px";
+        gen.canvas.style.top = "0px";
+        gen.canvas.style.left = (screenWidth - width) / 2 + "px";
       };
 
       width = Math.round(width);
       height = Math.round(height);
-      canvas.setAttribute("width", width.toString());
-      canvas.setAttribute("height", height.toString());
-      canvas.style.width = width + "px";
-      canvas.style.height = height + "px";
-      context!.fillStyle = "#fff";
-      context!.fillRect(0, 0, width, height);
+      gen.canvas.setAttribute("width", width.toString());
+      gen.canvas.setAttribute("height", height.toString());
+      gen.canvas.style.width = width + "px";
+      gen.canvas.style.height = height + "px";
+      gen.context!.fillStyle = "#fff";
+      gen.context!.fillRect(0, 0, width, height);
 
       out.canvas.width = width;
       out.canvas.height = height;
