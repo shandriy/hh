@@ -1,6 +1,13 @@
 "use strict";
 
 var gen = {
+  deltaTime: 13,
+  lastFrame: 0,
+  frame: function() {
+    var now = Date.now();
+    gen.deltaTime = now - gen.lastFrame;
+    gen.lastFrame = now;
+  },
   init: function() {
     try {
       document.getElementsByTagName("p")[0].remove();
@@ -50,5 +57,7 @@ var gen = {
     window.addEventListener("resize", onResize);
     window.addEventListener("focus", onResize);
     onResize();
+
+    window.setInterval(gen.frame);
   }
 };
